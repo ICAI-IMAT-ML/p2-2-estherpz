@@ -344,16 +344,16 @@ def plot_calibration_curve(y_true, y_probs, positive_label, n_bins=10):
         true_proportions.append(fraccion_positivos)
 
 
-    # # Graficar la curva de calibración
-    # plt.figure(figsize=(6, 6))
-    # plt.plot(bin_centers, true_proportions, marker="o", linestyle="-", label="Model Calibration")
-    # plt.plot([0, 1], [0, 1], "--", color="gray", label="Perfect Calibration")
-    # plt.xlabel("Predicted Probability")
-    # plt.ylabel("Fraction of Positives")
-    # plt.title("Calibration Curve")
-    # plt.legend()
-    # plt.grid()
-    # plt.show()
+    # Graficar la curva de calibración
+    plt.figure(figsize=(6, 6))
+    plt.plot(bin_centers, true_proportions, marker="o", linestyle="-", label="Model Calibration")
+    plt.plot([0, 1], [0, 1], "--", color="gray", label="Perfect Calibration")
+    plt.xlabel("Predicted Probability")
+    plt.ylabel("Fraction of Positives")
+    plt.title("Calibration Curve")
+    plt.legend()
+    plt.grid()
+    plt.show()
 
     return {"bin_centers": bin_centers, "true_proportions": true_proportions}
 
@@ -386,16 +386,16 @@ def plot_probability_histograms(y_true, y_probs, positive_label, n_bins=10):
     """
     y_true_mapped = np.array([1 if label == positive_label else 0 for label in y_true])
 
-    # # Crear los histogramas
-    # plt.figure(figsize=(10, 6))
-    # plt.hist(y_probs[y_true_mapped == 1], bins=n_bins, alpha=0.5, label='Clase positiva', color='blue', edgecolor='black')
-    # plt.hist(y_probs[y_true_mapped == 0], bins=n_bins, alpha=0.5, label='Clase negativa', color='red', edgecolor='black')
+    # Crear los histogramas
+    plt.figure(figsize=(10, 6))
+    plt.hist(y_probs[y_true_mapped == 1], bins=n_bins, alpha=0.5, label='Clase positiva', color='blue', edgecolor='black')
+    plt.hist(y_probs[y_true_mapped == 0], bins=n_bins, alpha=0.5, label='Clase negativa', color='red', edgecolor='black')
 
-    # plt.xlabel('Probabilidades predichas')
-    # plt.ylabel('Frecuencia')
-    # plt.title('Distribución de probabilidades predichas para cada clase')
-    # plt.legend(loc='upper right')
-    # plt.show()
+    plt.xlabel('Probabilidades predichas')
+    plt.ylabel('Frecuencia')
+    plt.title('Distribución de probabilidades predichas para cada clase')
+    plt.legend(loc='upper right')
+    plt.show()
 
     return {
         "array_passed_to_histogram_of_positive_class": y_probs[y_true_mapped == 1],
@@ -443,14 +443,14 @@ def plot_roc_curve(y_true, y_probs, positive_label):
         expected_fpr = fp / (fp + tn) if fp + tn != 0 else 0
         fpr.append(expected_fpr)
 
-    # # Graficar la curva ROC
-    # plt.figure(figsize=(8, 6))
-    # plt.plot(fpr, tpr, color='blue', label='Curva ROC')
-    # plt.plot([0, 1], [0, 1], linestyle='--', color='gray', label='Aleatorio')
-    # plt.xlabel('Tasa de Falsos Positivos (FPR)')
-    # plt.ylabel('Tasa de Verdaderos Positivos (TPR)')
-    # plt.title('Curva ROC')
-    # plt.legend(loc='lower right')
-    # plt.show()
+    # Graficar la curva ROC
+    plt.figure(figsize=(8, 6))
+    plt.plot(fpr, tpr, color='blue', label='Curva ROC')
+    plt.plot([0, 1], [0, 1], linestyle='--', color='gray', label='Aleatorio')
+    plt.xlabel('Tasa de Falsos Positivos (FPR)')
+    plt.ylabel('Tasa de Verdaderos Positivos (TPR)')
+    plt.title('Curva ROC')
+    plt.legend(loc='lower right')
+    plt.show()
 
     return {"fpr": np.array(fpr), "tpr": np.array(tpr)}
